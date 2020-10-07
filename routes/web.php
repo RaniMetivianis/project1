@@ -16,3 +16,7 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->get('/biodata', function() {
+    return 'Nama: Rani Metivianis NIM: 185150700111025';
+});
