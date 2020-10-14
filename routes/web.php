@@ -20,10 +20,10 @@ $router->get('/', function () use ($router) {
 $router->get('/biodata', function() {
     return 'Nama: Rani Metivianis NIM: 185150700111025';
 });
-
+//read
 $router->get('/products', 'ProductController@index');
 
-//show by id
+//read by id
 $router->get('/products/{id}', 'ProductController@show'); 
 
 //post 
