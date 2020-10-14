@@ -25,3 +25,9 @@ $router->get('/products', 'ProductController@index');
 
 //show by id
 $router->get('/products/{id}', 'ProductController@show'); 
+
+//post 
+$router->post('/products', 'ProductController@store');
+
+//delete
+$router->delete('/products/{id}', 'ProductController@destroy');
