@@ -9,20 +9,20 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product:: all();
+        $product = Product:: all();
         return response()->json([
             'message' => 'Menampilkan Semua Data Produk', 
-            'data' => $products
+            'data' => $product
         ], 200); 
     }
 
-    public function show($id)
+    public function show($id)   
     {
-        $products = Product:: find($id);
-        if($products){
+        $product = Product:: find($id);
+        if($product){
             return response()->json([
                 'message' => 'Produk Berhasil Ditemukan',
-                'data' => $products 
+                'data' => $product 
             ], 200); 
         }else{
             return response()->json([
@@ -53,9 +53,9 @@ class ProductController extends Controller
 
     public function destroy($id)
     {
-        $products = Product:: find($id);
-        if($products){
-            $products->delete();
+        $product = Product:: find($id);
+        if($product){
+            $product->delete();
             return response()->json([
                 'message' => 'Produk Berhasil Dihapus',
             ], 200); 
@@ -65,5 +65,27 @@ class ProductController extends Controller
             ], 404); 
         }
     } 
+
+    public function update(Request $request, $id)
+    {
+        $product = Product::whereid($id)->update([
+            'name'=> $request->name, 
+            'price'=> $request->price, 
+            'rating'=> $request->rating, 
+            'quantity'=> $request->quantity
+        ]); 
+        if($product){
+            return response()->json([
+                'message' => 'Produk Berhasil Diupdate',
+                'data' => $id
+            ], 200); 
+        }else{
+            return response()->json([
+                'message' => 'Produk Gagal Diupdate'
+            ], 401); 
+        }
+
+
+    }
 }
 
